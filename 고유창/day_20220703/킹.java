@@ -1,4 +1,4 @@
-package day_20220703;
+package 고유창.day_20220703;
 
 import java.io.BufferedReader;
 import java.io.IOException;
