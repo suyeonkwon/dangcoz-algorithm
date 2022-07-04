@@ -1,7 +1,10 @@
+package day_20220627;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
 public class 회의실배정 {
     static int N;
