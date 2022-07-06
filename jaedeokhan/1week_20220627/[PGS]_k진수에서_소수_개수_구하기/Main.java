@@ -1,8 +1,6 @@
-import java.util.*;
-
 // https://programmers.co.kr/learn/courses/30/lessons/92335
 
-class Solution {
+class PGS_K진수에서_소수_개수_구하기 {
         
     public int solution(int n, int k) {
         int answer = 0;
