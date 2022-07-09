@@ -10,7 +10,7 @@ public class BOJ_1063 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        // 킹 위치, 돌 위치, 움직이는 횟수
+        // 킹 위치 , 돌 위치, 움직이는 횟수
         char[] king = st.nextToken().toCharArray();
         char[] stone = st.nextToken().toCharArray();
         int N = Integer.parseInt(st.nextToken());
