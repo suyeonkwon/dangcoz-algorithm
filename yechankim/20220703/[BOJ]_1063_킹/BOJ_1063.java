@@ -62,4 +62,5 @@ public class BOJ_1063 {
             case "LB": next[0]--; next[1]--; break;
         }
     }
+
 }
