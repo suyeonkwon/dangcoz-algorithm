@@ -25,7 +25,7 @@ class Meeting implements Comparable<Meeting>{
     }
 }
 
-public class Main {
+public class BOJ_1913_회의실_배정 {
     public static void main(String[] args) throws IOException {
 
         // 문제
