@@ -1,0 +1,94 @@
+import java.util.*;
+class Solution {
+    static class File implements Comparable<File>{
+        int index;
+        String head;
+        String number;
+        String tail;
+
+        File(int index,String head, String number, String tail){
+            this.index=index;
+            this.head=head;
+            this.number=number;
+            this.tail=tail;
+        }
+
+
+        @Override
+        public int compareTo(File f) {
+            if(this.head.toLowerCase().compareTo(f.head.toLowerCase()) == 0){ //head비교가 같으면
+                if(getRealNum(f.number) - getRealNum(this.number) == 0){
+                    return this.index - f.index;
+                }else
+                    return getRealNum(this.number) - getRealNum(f.number);
+            }else {
+                return this.head.toLowerCase().compareTo(f.head.toLowerCase());
+            }
+        }
+
+
+    }
+    static List<File> list;
+    static String[] head;
+    static String[] number;
+    static String[] tail;
+    public String[] solution(String[] files) {
+        String[] answer = new String[files.length];
+        list = new ArrayList<>();
+        head = new String[files.length];
+        number = new String[files.length];
+        tail = new String[files.length];
+        for(int i=0;i<files.length;i++){
+            // files[i] = files[i].toLowerCase();
+            searchHead(i,files[i]);
+            list.add(new File(i,head[i].toString(),number[i],tail[i]));
+        }
+
+
+        Collections.sort(list);
+
+        for(int i=0;i<list.size();i++){
+            answer[i] = list.get(i).head+list.get(i).number+list.get(i).tail;
+        }
+        for(int i=0;i<list.size();i++){
+            System.out.println(list.get(i).head+" "+ list.get(i).number +" "+ list.get(i).tail);
+
+        }
+
+        return answer;
+    }
+    static int getRealNum(String number){
+        return Integer.parseInt(number);
+    }
+
+    void searchHead(int index,String word){
+        int idx =0;
+        StringBuilder sb = new StringBuilder();
+        while(!(word.charAt(idx)>='0' && word.charAt(idx)<='9')){
+            sb.append(word.charAt(idx));
+            idx++;
+        }
+        head[index] = sb.toString();
+        searchNumber(index,idx,word);
+    }
+    void searchNumber(int index,int idx,String word){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<5;i++){
+            if(idx<word.length()){
+            if(word.charAt(idx)>='0' && word.charAt(idx)<='9'){
+                sb.append(word.charAt(idx));
+                idx++;
+            }else{
+                break;
+            }
+            }
+            else
+                break;
+        }
+        number[index] = sb.toString();
+        searchTail(index,idx,word);
+    }
+    void searchTail(int index,int idx,String word){
+        tail[index] = word.substring(idx,word.length());
+    }
+}
