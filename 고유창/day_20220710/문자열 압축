@@ -1,0 +1,60 @@
+import java.util.*;
+class Solution {
+    public int solution(String s) {
+        int answer = s.length();
+        int len = s.length()/2;
+
+        int start=1;
+
+        while(len>0){
+            List<String> list = new ArrayList<>();
+            for(int i=0;i<s.length();i+=len){
+                int lenTo = i+len;
+                if(lenTo>s.length())
+                    lenTo = s.length();
+
+                list.add(s.substring(i,lenTo));
+
+            }
+            answer = Math.min(answer, zip(list,len));
+            len--;
+        }
+
+
+        return answer;
+    }
+    private int zip(List<String> list, int len){
+        StringBuilder sb = new StringBuilder();
+        int size = list.size();
+        int cnt=1;
+        for(int i=1;i<size;i++){
+            if(list.get(i).equals(list.get(i-1))){
+                cnt++;
+            }else{
+                if(cnt==1)
+                    sb.append(list.get(i-1));
+                else
+                    sb.append(cnt+list.get(i-1));
+                cnt=1;
+            }
+        }
+
+        if(cnt==1)
+                    sb.append(list.get(size-1));
+                else
+                    sb.append(cnt+list.get(size-1));
+
+
+        return sb.toString().length();
+    }
+}
+
+/*
+문자열의 반길이만큼만 진행하면된다.
+반이상길이를 잘라낼려고하면 압축이 안되므로
+aabbaccc는 1단위로 묶은거
+
+1. 단위별로 자른다(1~문자열 길이)
+2. 앞에서부터 단위별이 같을때까지 진행
+
+*/
